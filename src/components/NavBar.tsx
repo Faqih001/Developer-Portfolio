@@ -143,7 +143,7 @@ export default function NavBar() {
               <Github size={20} />
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
-               className="hover:text-purple-600 transition-colors duration-300">
+               className="hover:text-purple-600 transition-colors duration-300" title="LinkedIn Profile">
               <Linkedin size={20} />
             </a>
             <a href="mailto:email@example.com" 
