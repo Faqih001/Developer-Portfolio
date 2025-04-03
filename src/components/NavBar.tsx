@@ -65,7 +65,7 @@ export default function NavBar() {
               <div className="relative">
                 <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-purple-600 to-blue-500 opacity-30 blur group-hover:opacity-100 transition duration-300"></div>
                 <div className="relative text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-500 text-transparent bg-clip-text">
-                  JD
+                  FM
                 </div>
               </div>
               <span className="ml-3 font-semibold text-lg text-black dark:text-white">Dev Portfolio</span>
