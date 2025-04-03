@@ -93,7 +93,7 @@ export default function NavBar() {
               
               <div className="flex items-center space-x-2">
                 <a href="https://github.com/Faqih001" target="_blank" rel="noopener noreferrer" 
-                   className="hover:text-purple-600 transition-colors duration-300">
+                   className="hover:text-purple-600 transition-colors duration-300" title="GitHub Profile">
                   <Github size={20} />
                 </a>
                 <a href="https://www.linkedin.com/in/fakii-ahmad-a96a84213/" target="_blank" rel="noopener noreferrer"
