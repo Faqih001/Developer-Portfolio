@@ -138,8 +138,8 @@ export default function NavBar() {
           <a href="#contact" className="block py-2 hover:text-purple-600 transition-colors duration-300" onClick={toggleMenu}>Contact</a>
           
           <div className="flex space-x-6 pt-2 border-t border-gray-200 dark:border-gray-700">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" 
-               className="hover:text-purple-600 transition-colors duration-300" title="GitHub Profile">
+            <a href="https://github.com/Faqih001" target="_blank" rel="noopener noreferrer" 
+              className="hover:text-purple-600 transition-colors duration-300" title="GitHub Profile">
               <Github size={20} />
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
