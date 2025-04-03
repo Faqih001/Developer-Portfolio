@@ -147,7 +147,8 @@ export default function NavBar() {
               <Linkedin size={20} />
             </a>
             <a href="mailto:email@example.com" 
-               className="hover:text-purple-600 transition-colors duration-300">
+               className="hover:text-purple-600 transition-colors duration-300" 
+               title="Email Example">
               <Mail size={20} />
             </a>
           </div>
