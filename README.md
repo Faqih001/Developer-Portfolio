@@ -6,7 +6,7 @@ This is a **Developer Portfolio** project built to showcase your work, skills, a
 
 ## 🚀 Live Demo
 
-[Click here to view the project](#) *(Replace with actual deployment URL)*
+[Click here to view the project](https://developer-portfolio-five-dusky.vercel.app/) *(Replace with actual deployment URL)*
 
 ## 🛠️ Technologies Used
 
