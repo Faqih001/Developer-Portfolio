@@ -101,7 +101,7 @@ export default function NavBar() {
                   <Linkedin size={20} />
                 </a>
                 <a href="mailto:fakiiahmad001@gmail.com" target="_blank" rel="noopener noreferrer"
-                   className="hover:text-purple-600 transition-colors duration-300">
+                   className="hover:text-purple-600 transition-colors duration-300" title="Email Fakii Ahmad">
                   <Mail size={20} />
                 </a>
               </div>
