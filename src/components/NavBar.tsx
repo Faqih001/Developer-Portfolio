@@ -146,7 +146,7 @@ export default function NavBar() {
                className="hover:text-purple-600 transition-colors duration-300" title="LinkedIn Profile">
               <Linkedin size={20} />
             </a>
-            <a href="mailto:email@example.com" 
+            <a href="mailto:fakiiahmad001@gmail.com" target="_blank" rel="noopener noreferrer"
                className="hover:text-purple-600 transition-colors duration-300" 
                title="Email Example">
               <Mail size={20} />
