@@ -142,7 +142,7 @@ export default function NavBar() {
               className="hover:text-purple-600 transition-colors duration-300" title="GitHub Profile">
               <Github size={20} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://linkedin.com/in/fakii-ahmad-a96a84213" target="_blank" rel="noopener noreferrer"
                className="hover:text-purple-600 transition-colors duration-300" title="LinkedIn Profile">
               <Linkedin size={20} />
             </a>
