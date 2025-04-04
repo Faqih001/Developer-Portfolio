@@ -113,11 +113,11 @@ npm run build
 
 You can deploy this project using Lovable or other platforms like:
 
-### Using Lovable
-Simply open [Lovable](https://lovable.dev/projects/dcc7552c-3e0a-4090-a142-b0a95a208337) and click on Share -> Publish.
+### Using Vercel
+Simply open [Vercel](https://developer-portfolio-five-dusky.vercel.app/).
 
 ### Other Platforms
-- **Vercel**
+- **Lovable**
 - **Netlify**
 - **GitHub Pages**
 
