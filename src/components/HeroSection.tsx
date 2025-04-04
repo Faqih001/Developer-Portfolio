@@ -40,13 +40,13 @@ export default function HeroSection() {
               </div>
               
               <div className="flex gap-4 mt-8">
-                <a href="https://github.com/Faqih001" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-emerald-600 transition-colors" title="GitHub Profile">
+                <a href="https://github.com/Faqih001" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-emerald-600 transition-colors">
                   <Github size={22} />
                 </a>
-                <a href="https://www.linkedin.com/in/fakii-mohammed-a96a84213" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-indigo-600 transition-colors" title="LinkedIn Profile">
+                <a href="https://www.linkedin.com/in/fakii-mohammed-a96a84213" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-indigo-600 transition-colors">
                   <Linkedin size={22} />
                 </a>
-                <a href="mailto:fakiiahmad001@gmail.com" className="text-gray-600 hover:text-teal-500 transition-colors" title="Send Email">
+                <a href="mailto:fakiiahmad001@gmail.com" className="text-gray-600 hover:text-teal-500 transition-colors">
                   <Mail size={22} />
                 </a>
               </div>
@@ -68,7 +68,7 @@ export default function HeroSection() {
         </div>
         
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <a href="#about" title="Scroll to About Section" className="block p-2 rounded-full bg-white/80 dark:bg-gray-800/80 shadow-lg text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+          <a href="#about" className="block p-2 rounded-full bg-white/80 dark:bg-gray-800/80 shadow-lg text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
             <ArrowDown size={24} />
           </a>
         </div>

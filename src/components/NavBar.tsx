@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Menu, X, MoonStar, Sun, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -77,6 +78,7 @@ export default function NavBar() {
               <a href="#about" className="hover:text-purple-600 transition-colors duration-300">About</a>
               <a href="#skills" className="hover:text-purple-600 transition-colors duration-300">Skills</a>
               <a href="#projects" className="hover:text-purple-600 transition-colors duration-300">Projects</a>
+              <a href="#education" className="hover:text-purple-600 transition-colors duration-300">Education</a>
               <a href="#contact" className="hover:text-purple-600 transition-colors duration-300">Contact</a>
             </div>
             
@@ -134,6 +136,7 @@ export default function NavBar() {
           <a href="#about" className="block py-2 hover:text-purple-600 transition-colors duration-300" onClick={toggleMenu}>About</a>
           <a href="#skills" className="block py-2 hover:text-purple-600 transition-colors duration-300" onClick={toggleMenu}>Skills</a>
           <a href="#projects" className="block py-2 hover:text-purple-600 transition-colors duration-300" onClick={toggleMenu}>Projects</a>
+          <a href="#education" className="block py-2 hover:text-purple-600 transition-colors duration-300" onClick={toggleMenu}>Education</a>
           <a href="#contact" className="block py-2 hover:text-purple-600 transition-colors duration-300" onClick={toggleMenu}>Contact</a>
           <div className="flex flex-wrap gap-4">
             <Button 

@@ -1,175 +1,111 @@
 
-import { useEffect, useRef, useState } from 'react';
-import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
-import { Code, Server, Database, Terminal } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
-
-type Skill = {
-  id: string;
-  name: string;
-  level: number;
-  category: 'frontend' | 'backend' | 'database' | 'devops';
-};
+import { useState, useEffect } from 'react';
+import { Code2, Server, Database, PencilRuler } from 'lucide-react';
 
 export default function SkillsSection() {
-  const [skills, setSkills] = useState<Skill[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const progressRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    async function fetchSkills() {
-      try {
-        const { data, error } = await supabase
-          .from('skills')
-          .select('*')
-          .order('category');
-        
-        if (error) {
-          console.error('Error fetching skills:', error);
-        } else if (data) {
-          setSkills(data as Skill[]);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setAnimate(true);
+          observer.unobserve(entry.target);
         }
-      } catch (error) {
-        console.error('Error:', error);
-      } finally {
-        setIsLoading(false);
-      }
+      });
+    }, { threshold: 0.2 });
+    
+    const section = document.getElementById('skills');
+    if (section) observer.observe(section);
+    
+    return () => {
+      if (section) observer.unobserve(section);
     }
-
-    fetchSkills();
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const progressBar = entry.target.querySelector('[role="progressbar"]');
-            if (progressBar) {
-              const value = progressBar.getAttribute('data-value');
-              if (value) {
-                progressBar.setAttribute('aria-valuenow', value);
-                (progressBar as HTMLElement).style.width = `${value}%`;
-              }
-            }
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    progressRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => {
-      progressRefs.current.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
-      });
-    };
-  }, [skills]);
-
-  const categories = ['frontend', 'backend', 'database', 'devops'];
-  const categoryNames = {
-    frontend: 'Frontend',
-    backend: 'Backend',
-    database: 'Database',
-    devops: 'DevOps & Tools'
-  };
-
-  const categoryIcons = {
-    frontend: <Code className="text-emerald-500" />,
-    backend: <Server className="text-indigo-500" />,
-    database: <Database className="text-teal-500" />,
-    devops: <Terminal className="text-blue-500" />
-  };
-
-  if (isLoading) {
-    return (
-      <section id="skills" className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Skills</h2>
-            <div className="h-1 w-24 bg-gradient-to-r from-emerald-600 to-indigo-500 mx-auto rounded"></div>
-            <p className="text-lg mt-6 max-w-3xl mx-auto">Loading skills...</p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            {categories.map((category) => (
-              <div key={category} className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border-l-4 border-l-emerald-500 animate-pulse">
-                <h3 className="text-xl font-semibold mb-6 flex items-center">
-                  <span className="mr-3">
-                    {categoryIcons[category as keyof typeof categoryIcons]}
-                  </span>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-indigo-500">
-                    {categoryNames[category as keyof typeof categoryNames]}
-                  </span>
-                </h3>
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="space-y-2 mb-6">
-                    <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
-                    <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
+  const skillCategories = [
+    {
+      title: "Frontend Development",
+      icon: <Code2 className="w-8 h-8" />,
+      skills: [
+        { name: "React.js", level: 90 },
+        { name: "TypeScript", level: 85 },
+        { name: "JavaScript", level: 95 },
+        { name: "HTML & CSS", level: 95 },
+        { name: "Tailwind CSS", level: 90 },
+      ]
+    },
+    {
+      title: "Backend Development",
+      icon: <Server className="w-8 h-8" />,
+      skills: [
+        { name: "Node.js", level: 85 },
+        { name: "Express", level: 80 },
+        { name: "GraphQL", level: 75 },
+        { name: "RESTful APIs", level: 90 },
+        { name: "Authentication", level: 85 },
+      ]
+    },
+    {
+      title: "Database & DevOps",
+      icon: <Database className="w-8 h-8" />,
+      skills: [
+        { name: "MongoDB", level: 80 },
+        { name: "PostgreSQL", level: 75 },
+        { name: "Firebase", level: 85 },
+        { name: "Docker", level: 70 },
+        { name: "AWS", level: 65 },
+      ]
+    },
+    {
+      title: "Tools & Design",
+      icon: <PencilRuler className="w-8 h-8" />,
+      skills: [
+        { name: "Git & GitHub", level: 90 },
+        { name: "Figma", level: 75 },
+        { name: "Jest", level: 80 },
+        { name: "Webpack", level: 70 },
+        { name: "VS Code", level: 95 },
+      ]
+    }
+  ];
 
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" className="py-20 bg-white dark:bg-gray-800">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Skills</h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-emerald-600 to-indigo-500 mx-auto rounded"></div>
-          <p className="text-lg mt-6 max-w-3xl mx-auto">
-            My expertise spans across various technologies in frontend and full-stack development.
-          </p>
+          <div className="h-1 w-24 bg-gradient-to-r from-purple-600 to-blue-500 mx-auto rounded"></div>
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">My technical expertise and proficiency levels</p>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {categories.map((category) => (
-            <div key={category} className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border-l-4 border-l-emerald-500 hover:shadow-xl transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-6 flex items-center">
-                <span className="mr-3">
-                  {categoryIcons[category as keyof typeof categoryIcons]}
-                </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-indigo-500">
-                  {categoryNames[category as keyof typeof categoryNames]}
-                </span>
-                <span className="ml-3">
-                  <Badge variant="outline" className="font-normal bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300">
-                    {skills.filter(skill => skill.category === category).length} skills
-                  </Badge>
-                </span>
-              </h3>
-
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {skillCategories.map((category, idx) => (
+            <div key={idx} className="p-6 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
+              <div className="flex items-center mb-6">
+                <div className="p-3 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-600 mr-4">
+                  {category.icon}
+                </div>
+                <h3 className="text-xl font-bold">{category.title}</h3>
+              </div>
+              
               <div className="space-y-6">
-                {skills
-                  .filter(skill => skill.category === category)
-                  .map((skill) => (
-                    <div 
-                      key={skill.id} 
-                      className="space-y-2"
-                      ref={el => {
-                        progressRefs.current[skills.findIndex(s => s.id === skill.id)] = el;
-                      }}
-                    >
-                      <div className="flex justify-between">
-                        <span className="font-medium">{skill.name}</span>
-                        <span className="text-gray-500">{skill.level}%</span>
-                      </div>
-                      <Progress 
-                        className="h-2 bg-gray-200 dark:bg-gray-700" 
-                        value={0} 
-                        data-value={skill.level}
-                      />
+                {category.skills.map((skill, skillIdx) => (
+                  <div key={skillIdx}>
+                    <div className="flex justify-between mb-2">
+                      <span className="font-medium">{skill.name}</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">{skill.level}%</span>
                     </div>
-                  ))}
+                    <div className="h-2.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-gradient-to-r from-purple-600 to-blue-500 rounded-full transition-all duration-1000 ease-out"
+                        style={{ 
+                          width: animate ? `${skill.level}%` : '0%'
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ))}

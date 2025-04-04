@@ -1,11 +1,12 @@
 
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
+import { useToast } from '@/components/ui/use-toast';
+import { supabase } from "@/integrations/supabase/client";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -28,20 +29,50 @@ export default function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Validate form data
+      if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+        toast({
+          title: "Missing information",
+          description: "Please fill in all required fields.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+      
+      // Send email using Supabase Edge Function
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData,
+      });
+      
+      if (error) {
+        throw new Error(error.message || "Failed to send message");
+      }
+      
+      // Show success message
       toast({
         title: "Message sent!",
         description: "Thank you for your message. I'll get back to you soon.",
       });
+      
+      // Reset form
       setFormData({
         name: '',
         email: '',
         subject: '',
         message: '',
       });
+    } catch (error: any) {
+      console.error("Error sending message:", error);
+      toast({
+        title: "Error sending message",
+        description: error.message || "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -66,8 +97,8 @@ export default function ContactSection() {
                   <div>
                     <h3 className="text-lg font-semibold mb-1">Email</h3>
                     <p className="text-gray-600 dark:text-gray-300">
-                      <a href="mailto:hello@example.com" className="hover:text-purple-600 transition-colors">
-                        hello@example.com
+                      <a href="mailto:fakiiahmad001@gmail.com" className="hover:text-purple-600 transition-colors">
+                        fakiiahmad001@gmail.com
                       </a>
                     </p>
                   </div>
@@ -85,7 +116,7 @@ export default function ContactSection() {
                     <h3 className="text-lg font-semibold mb-1">Phone</h3>
                     <p className="text-gray-600 dark:text-gray-300">
                       <a href="tel:+11234567890" className="hover:text-blue-600 transition-colors">
-                        +254-741-140250
+                        +1 (123) 456-7890
                       </a>
                     </p>
                   </div>
@@ -102,7 +133,7 @@ export default function ContactSection() {
                   <div>
                     <h3 className="text-lg font-semibold mb-1">Location</h3>
                     <p className="text-gray-600 dark:text-gray-300">
-                      Nakuru, Kenya
+                      San Francisco, CA
                     </p>
                   </div>
                 </div>
@@ -128,6 +159,7 @@ export default function ContactSection() {
                         onChange={handleChange}
                         required
                         className="w-full"
+                        disabled={isSubmitting}
                       />
                     </div>
                     <div>
@@ -143,6 +175,7 @@ export default function ContactSection() {
                         onChange={handleChange}
                         required
                         className="w-full"
+                        disabled={isSubmitting}
                       />
                     </div>
                   </div>
@@ -158,6 +191,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       required
                       className="w-full"
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div>
@@ -172,6 +206,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       required
                       className="w-full min-h-[150px]"
+                      disabled={isSubmitting}
                     />
                   </div>
                   <Button
@@ -179,7 +214,11 @@ export default function ContactSection() {
                     className="w-full bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 transition-all duration-300"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Sending...' : (
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
+                      </>
+                    ) : (
                       <>
                         <Send className="mr-2 h-4 w-4" /> Send Message
                       </>
