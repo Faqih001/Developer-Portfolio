@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, Mail, MoonStar, Sun } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, MoonStar, Sun, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
@@ -19,13 +18,11 @@ export default function NavBar() {
   }, []);
 
   useEffect(() => {
-    // Check if user prefers dark mode
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setIsDarkMode(true);
       document.documentElement.classList.add('dark');
     }
 
-    // Listen for changes in color scheme preference
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e: MediaQueryListEvent) => {
       setIsDarkMode(e.matches);
@@ -50,6 +47,8 @@ export default function NavBar() {
       document.documentElement.classList.add('dark');
     }
   };
+
+  const resumeLink = "https://docs.google.com/document/d/13SSAtepBus2e5zSipSqKQQ3BZetnkC0e/edit?usp=sharing&ouid=106720930584260395877&rtpof=true&sd=true";
 
   return (
     <nav className={cn(
@@ -104,6 +103,10 @@ export default function NavBar() {
                    className="hover:text-purple-600 transition-colors duration-300" title="Email Fakii Ahmad">
                   <Mail size={20} />
                 </a>
+                <a href={resumeLink} target="_blank" rel="noopener noreferrer"
+                   className="hover:text-purple-600 transition-colors duration-300" title="Download Resume">
+                  <Download size={20} />
+                </a>
               </div>
             </div>
           </div>
@@ -136,6 +139,13 @@ export default function NavBar() {
           <a href="#skills" className="block py-2 hover:text-purple-600 transition-colors duration-300" onClick={toggleMenu}>Skills</a>
           <a href="#projects" className="block py-2 hover:text-purple-600 transition-colors duration-300" onClick={toggleMenu}>Projects</a>
           <a href="#contact" className="block py-2 hover:text-purple-600 transition-colors duration-300" onClick={toggleMenu}>Contact</a>
+          <a href={resumeLink} target="_blank" rel="noopener noreferrer" 
+             className="block py-2 hover:text-purple-600 transition-colors duration-300" onClick={toggleMenu}>
+            <div className="flex items-center space-x-2">
+              <Download size={20} />
+              <span>Resume</span>
+            </div>
+          </a>
           
           <div className="flex space-x-6 pt-2 border-t border-gray-200 dark:border-gray-700">
             <a href="https://github.com/Faqih001" target="_blank" rel="noopener noreferrer" 
