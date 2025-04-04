@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, Mail, MoonStar, Sun, Download } from 'lucide-react';
+import { Menu, X, MoonStar, Sun, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
@@ -90,24 +90,20 @@ export default function NavBar() {
                 {isDarkMode ? <Sun size={20} /> : <MoonStar size={20} />}
               </Button>
               
-              <div className="flex items-center space-x-2">
-                <a href="https://github.com/Faqih001" target="_blank" rel="noopener noreferrer" 
-                   className="hover:text-purple-600 transition-colors duration-300" title="GitHub Profile">
-                  <Github size={20} />
-                </a>
-                <a href="https://www.linkedin.com/in/fakii-ahmad-a96a84213/" target="_blank" rel="noopener noreferrer"
-                   className="hover:text-purple-600 transition-colors duration-300" title="LinkedIn Profile">
-                  <Linkedin size={20} />
-                </a>
-                <a href="mailto:fakiiahmad001@gmail.com" target="_blank" rel="noopener noreferrer"
-                   className="hover:text-purple-600 transition-colors duration-300" title="Email Fakii Ahmad">
-                  <Mail size={20} />
-                </a>
-                <a href={resumeLink} target="_blank" rel="noopener noreferrer"
-                   className="hover:text-purple-600 transition-colors duration-300" title="Download Resume">
+              <Button 
+                className="bg-gradient-to-r from-emerald-600 to-indigo-500 hover:from-emerald-700 hover:to-indigo-600 transition-all duration-300 text-white"
+              >
+                <a 
+                  href={resumeLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2"
+                  title="Download Resume"
+                >
                   <Download size={20} />
+                  <span>Resume</span>
                 </a>
-              </div>
+              </Button>
             </div>
           </div>
           
@@ -139,28 +135,21 @@ export default function NavBar() {
           <a href="#skills" className="block py-2 hover:text-purple-600 transition-colors duration-300" onClick={toggleMenu}>Skills</a>
           <a href="#projects" className="block py-2 hover:text-purple-600 transition-colors duration-300" onClick={toggleMenu}>Projects</a>
           <a href="#contact" className="block py-2 hover:text-purple-600 transition-colors duration-300" onClick={toggleMenu}>Contact</a>
-          <a href={resumeLink} target="_blank" rel="noopener noreferrer" 
-             className="block py-2 hover:text-purple-600 transition-colors duration-300" onClick={toggleMenu}>
-            <div className="flex items-center space-x-2">
-              <Download size={20} />
-              <span>Resume</span>
-            </div>
-          </a>
-          
-          <div className="flex space-x-6 pt-2 border-t border-gray-200 dark:border-gray-700">
-            <a href="https://github.com/Faqih001" target="_blank" rel="noopener noreferrer" 
-              className="hover:text-purple-600 transition-colors duration-300" title="GitHub Profile">
-              <Github size={20} />
-            </a>
-            <a href="https://linkedin.com/in/fakii-ahmad-a96a84213" target="_blank" rel="noopener noreferrer"
-               className="hover:text-purple-600 transition-colors duration-300" title="LinkedIn Profile">
-              <Linkedin size={20} />
-            </a>
-            <a href="mailto:fakiiahmad001@gmail.com" target="_blank" rel="noopener noreferrer"
-               className="hover:text-purple-600 transition-colors duration-300" 
-               title="Email Example">
-              <Mail size={20} />
-            </a>
+          <div className="flex flex-wrap gap-4">
+            <Button 
+              className="bg-gradient-to-r from-emerald-600 to-indigo-500 hover:from-emerald-700 hover:to-indigo-600 transition-all duration-300 text-white"
+            >
+              <a 
+                href={resumeLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2"
+                onClick={toggleMenu}
+              >
+                <Download size={20} />
+                <span>Resume</span>
+              </a>
+            </Button>
           </div>
         </div>
       </div>
