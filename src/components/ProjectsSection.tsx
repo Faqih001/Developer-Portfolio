@@ -1,7 +1,10 @@
+
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { ExternalLink, Github } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 type Project = {
   id: string;
@@ -12,6 +15,19 @@ type Project = {
   demo_url: string;
   github_url: string;
 };
+
+// Colors for the technology badges
+const techColors = [
+  'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
+  'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
+  'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
+  'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300',
+  'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300',
+  'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300',
+  'bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-300',
+  'bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-300',
+  'bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300',
+];
 
 export default function ProjectsSection() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -39,6 +55,13 @@ export default function ProjectsSection() {
 
     fetchProjects();
   }, []);
+
+  // Get a color for a technology based on its name
+  const getTechColor = (tech: string, index: number) => {
+    // Use a deterministic way to assign colors based on the tech name and position
+    const colorIndex = (tech.length + index) % techColors.length;
+    return techColors[colorIndex];
+  };
 
   if (isLoading) {
     return (
@@ -83,32 +106,62 @@ export default function ProjectsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
-            <div key={project.id} className="rounded-xl shadow-md overflow-hidden bg-white dark:bg-gray-800 hover:shadow-xl transition-all duration-300">
-              <img src={project.image} alt={project.title} className="h-48 w-full object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
-                <div className="flex space-x-2 mb-4">
+            <Card key={project.id} className="group overflow-hidden rounded-xl border-0 shadow-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-tr from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
+              <div className="relative overflow-hidden h-52">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+              
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold mb-3 bg-gradient-to-r from-primary to-violet-500 bg-clip-text text-transparent">
+                  {project.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-5 line-clamp-3">
+                  {project.description}
+                </p>
+                
+                <div className="flex flex-wrap justify-center gap-2 mb-5">
                   {project.technologies.map((tech, index) => (
-                    <span key={index} className="px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium">{tech}</span>
+                    <Badge 
+                      key={index} 
+                      className={`${getTechColor(tech, index)} border-0 font-medium px-3 py-1`}
+                    >
+                      {tech}
+                    </Badge>
                   ))}
                 </div>
-                <div className="flex justify-between items-center">
-                  <Button variant="ghost" size="sm" asChild>
-                    <a href={project.demo_url} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Demo
-                    </a>
-                  </Button>
-                  <Button variant="ghost" size="sm" asChild>
-                    <a href={project.github_url} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                      <Github className="h-4 w-4 mr-2" />
-                      GitHub
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
+              </CardContent>
+              
+              <CardFooter className="px-6 pb-6 pt-0 flex justify-between gap-4">
+                <Button 
+                  variant="default" 
+                  size="sm" 
+                  className="flex-1 bg-gradient-to-r from-emerald-500 to-emerald-700 hover:from-emerald-600 hover:to-emerald-800 transition-all duration-300"
+                  asChild
+                >
+                  <a href={project.demo_url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                    <ExternalLink className="h-4 w-4 mr-2" />
+                    Demo
+                  </a>
+                </Button>
+                
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="flex-1 border-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300"
+                  asChild
+                >
+                  <a href={project.github_url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                    <Github className="h-4 w-4 mr-2" />
+                    GitHub
+                  </a>
+                </Button>
+              </CardFooter>
+            </Card>
           ))}
         </div>
       </div>
