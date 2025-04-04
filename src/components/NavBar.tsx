@@ -48,7 +48,7 @@ export default function NavBar() {
     }
   };
 
-  const resumeLink = "https://docs.google.com/document/d/13SSAtepBus2e5zSipSqKQQ3BZetnkC0e/edit?usp=sharing&ouid=106720930584260395877&rtpof=true&sd=true";
+  const resumeLink = "https://drive.google.com/file/d/1C5S6ESA6jC6l3UlYOevEP21dzQukBOdR/view?usp=sharing";
 
   return (
     <nav className={cn(
