@@ -68,7 +68,7 @@ export default function HeroSection() {
         </div>
         
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <a href="#about" className="block p-2 rounded-full bg-white/80 dark:bg-gray-800/80 shadow-lg text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+          <a href="#about" title="Scroll to About Section" className="block p-2 rounded-full bg-white/80 dark:bg-gray-800/80 shadow-lg text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
             <ArrowDown size={24} />
           </a>
         </div>
