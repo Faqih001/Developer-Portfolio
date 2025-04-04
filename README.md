@@ -7,7 +7,7 @@ This is a professional **Developer Portfolio** website built to showcase skills,
 
 ## 🚀 Live Demo
 
-[Click here to view the project](https://lovable.dev/projects/dcc7552c-3e0a-4090-a142-b0a95a208337) *(Visit the Lovable project URL)*
+[Click here to view the project](https://developer-portfolio-five-dusky.vercel.app/) *(Visit the project URL)*
 
 ## 🛠️ Technologies Used
 
@@ -184,4 +184,4 @@ Contributions are welcome! To contribute:
 This project is open-source and available under the [MIT License](LICENSE).
 
 ---
-✨ *Built with ❤️ by [Your Name]* *(Replace with your name)*
+✨ *Built with ❤️ by *Fakii Mohammed*
