@@ -40,13 +40,13 @@ export default function HeroSection() {
               </div>
               
               <div className="flex gap-4 mt-8">
-                <a href="https://github.com/Faqih001" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-emerald-600 transition-colors">
+                <a href="https://github.com/Faqih001" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-emerald-600 transition-colors" title="GitHub Profile">
                   <Github size={22} />
                 </a>
-                <a href="https://www.linkedin.com/in/fakii-mohammed-a96a84213" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-indigo-600 transition-colors">
+                <a href="https://www.linkedin.com/in/fakii-mohammed-a96a84213" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-indigo-600 transition-colors" title="LinkedIn Profile">
                   <Linkedin size={22} />
                 </a>
-                <a href="mailto:fakiiahmad001@gmail.com" className="text-gray-600 hover:text-teal-500 transition-colors">
+                <a href="mailto:fakiiahmad001@gmail.com" className="text-gray-600 hover:text-teal-500 transition-colors" title="Send Email">
                   <Mail size={22} />
                 </a>
               </div>
