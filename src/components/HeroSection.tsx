@@ -1,31 +1,30 @@
-
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function HeroSection() {
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex flex-col justify-center relative overflow-hidden pt-24 md:pt-0">
       {/* Animated background elements */}
       <div className="absolute -top-40 -left-40 w-96 h-96 bg-emerald-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
       <div className="absolute top-0 -right-20 w-96 h-96 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-40 left-20 w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
       
-      <div className="container mx-auto px-6 relative z-10 pt-24">
+      <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-12 md:mb-0">
+          <div className="md:w-1/2 mb-12 md:mb-0 text-left">
             <div className="animate-fade-in-up">
               <span className="px-3 py-1 rounded-full bg-gradient-to-r from-emerald-500/20 to-indigo-500/20 text-emerald-600 text-sm font-medium mb-6 inline-block">
                 Full Stack Developer
               </span>
               
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tighter">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tighter text-left">
                 <span className="block">I'm</span>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-indigo-500">
                   Fakii Mohammed
                 </span>
               </h1>
               
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-lg">
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-lg text-left">
                 I build user-friendly, accessible, and high-performance web applications
                 with expertise in React, TypeScript, Flutter, and modern frontend technologies.
               </p>
@@ -40,13 +39,13 @@ export default function HeroSection() {
               </div>
               
               <div className="flex gap-4 mt-8">
-                <a href="https://github.com/Faqih001" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-emerald-600 transition-colors" title="Visit my GitHub profile">
+                <a href="https://github.com/Faqih001" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-emerald-600 transition-colors">
                   <Github size={22} />
                 </a>
-                <a href="https://www.linkedin.com/in/fakii-mohammed-a96a84213" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-indigo-600 transition-colors" title="Visit my LinkedIn profile">
+                <a href="https://www.linkedin.com/in/fakii-mohammed-a96a84213" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-indigo-600 transition-colors">
                   <Linkedin size={22} />
                 </a>
-                <a href="mailto:fakiiahmad001@gmail.com" className="text-gray-600 hover:text-teal-500 transition-colors" title="Send me an email">
+                <a href="mailto:fakiiahmad001@gmail.com" className="text-gray-600 hover:text-teal-500 transition-colors">
                   <Mail size={22} />
                 </a>
               </div>
@@ -68,7 +67,7 @@ export default function HeroSection() {
         </div>
         
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <a href="#about" title="Scroll to About Section" className="block p-2 rounded-full bg-white/80 dark:bg-gray-800/80 shadow-lg text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+          <a href="#about" className="block p-2 rounded-full bg-white/80 dark:bg-gray-800/80 shadow-lg text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
             <ArrowDown size={24} />
           </a>
         </div>

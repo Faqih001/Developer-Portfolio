@@ -116,7 +116,7 @@ export default function ContactSection() {
                     <h3 className="text-lg font-semibold mb-1">Phone</h3>
                     <p className="text-gray-600 dark:text-gray-300">
                       <a href="tel:+11234567890" className="hover:text-blue-600 transition-colors">
-                        (+254)-741-140250
+                        +1 (123) 456-7890
                       </a>
                     </p>
                   </div>
@@ -133,7 +133,7 @@ export default function ContactSection() {
                   <div>
                     <h3 className="text-lg font-semibold mb-1">Location</h3>
                     <p className="text-gray-600 dark:text-gray-300">
-                      Nakuru, Kenya
+                      San Francisco, CA
                     </p>
                   </div>
                 </div>
